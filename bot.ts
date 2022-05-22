@@ -10,5 +10,5 @@ if (token === undefined) {
 const bot = new Telegraf<Context>(token);
 
 bot.use(Telegraf.log());
-bot.command('films', ctx => FilmController.create(ctx));
+bot.command('films', FilmController.create);
 bot.launch();
