@@ -1,6 +1,4 @@
-import { Context } from 'telegraf'
-
-export class FilmController extends Context {
+export class FilmController {
   async create(ctx) {
     const text = ctx.update.message.text.replace(/\/films/gi, '').trim();
     console.log(text);
@@ -11,4 +9,4 @@ export class FilmController extends Context {
 
 }
 
-export default FilmController;
+export default new FilmController();
