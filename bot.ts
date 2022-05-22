@@ -1,6 +1,6 @@
 require('dotenv').config();
 import { Context, Telegraf } from 'telegraf'
-import FilmController from './controllers/filmController';
+import FilmController from './src/controllers/filmController';
 
 const token = process.env.BOT_TOKEN;
 if (token === undefined) {
