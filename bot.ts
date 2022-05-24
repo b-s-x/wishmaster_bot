@@ -1,5 +1,5 @@
 require('dotenv').config();
-import { Context, Telegraf } from 'telegraf'
+import { Context, Telegraf } from 'telegraf';
 import { token } from './src/config';
 import botModule from './src/botModule';
 
