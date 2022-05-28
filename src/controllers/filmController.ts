@@ -1,17 +1,35 @@
 import { Context } from 'telegraf';
 import DBController from '../db/DBcontroller';
 
-export class FilmController {
+interface IFilmController {
+  create(ctx: Context, msg: string): void;
+  getAll(ctx: Context): void;
+}
+
+const resultsToString = (results: any[]) => results
+  .map(({ id, name }) => `\n${id}: ${name}`)
+  .join();
+
+export class FilmController implements IFilmController{
   async create(ctx: Context, msg: string) {
     const text = msg.replace(/\/film/gi, '').trim();
-    console.log(text);
-    await DBController.insertFilm(text);
-    console.log('success');
+    try {
+      await DBController.insertFilm(text);
+    } catch (err) {
+      console.error('FilmController:create', err);
+    }
     ctx.reply('success')
   }
-  // async getAll(req, res) {
-  // }
 
+  async getAll(ctx: Context) {
+    try {
+      const data = await DBController.getAllFilms();
+      const results = resultsToString(data);
+      ctx.reply(results);
+    } catch (err) {
+      console.error('FilmController:getAll', err);
+    }
+  }
 }
 
 export default new FilmController();
