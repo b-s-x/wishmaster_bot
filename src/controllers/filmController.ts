@@ -1,13 +1,13 @@
 import { Context } from 'telegraf';
 import DBController from '../db/DBcontroller';
-import { resultsToString } from '../utils';
+import { resultsToString, Data } from '../utils';
 
 interface IFilmController {
   create(ctx: Context, msg: string): void;
   getAll(ctx: Context): void;
 }
 
-export class FilmController implements IFilmController{
+export class FilmController implements IFilmController {
   async create(ctx: Context, msg: string) {
     const text = msg.replace(/\/film/gi, '').trim();
     try {
@@ -20,8 +20,8 @@ export class FilmController implements IFilmController{
 
   async getAll(ctx: Context) {
     try {
-      const data = await DBController.getAllFilms();
-      const results = resultsToString(data);
+      const data: Data[] = await DBController.getAllFilms();
+      const results: string = resultsToString(data);
       ctx.reply(results);
     } catch (err) {
       console.error('FilmController:getAll', err);
