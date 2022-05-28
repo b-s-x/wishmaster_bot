@@ -1,14 +1,11 @@
 import { Context } from 'telegraf';
 import DBController from '../db/DBcontroller';
+import { resultsToString } from '../utils';
 
 interface IFilmController {
   create(ctx: Context, msg: string): void;
   getAll(ctx: Context): void;
 }
-
-const resultsToString = (results: any[]) => results
-  .map(({ id, name }) => `\n${id}: ${name}`)
-  .join();
 
 export class FilmController implements IFilmController{
   async create(ctx: Context, msg: string) {
