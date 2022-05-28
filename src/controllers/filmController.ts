@@ -7,7 +7,7 @@ interface IFilmController {
   getAll(ctx: Context): void;
 }
 
-export class FilmController implements IFilmController{
+export class FilmController implements IFilmController {
   async create(ctx: Context, msg: string) {
     const text = msg.replace(/\/film/gi, '').trim();
     try {
