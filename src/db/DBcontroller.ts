@@ -10,6 +10,10 @@ class DBController {
         db.destroy();
       });
   }
+
+  async getAllFilms () {
+    return await db('films');
+  }
 };
 
 export default new DBController();
